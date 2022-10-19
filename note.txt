@@ -1,0 +1,4 @@
+- Xóa kí tự ở giữa @ và :
+code: @.*:
+replace: :
+
