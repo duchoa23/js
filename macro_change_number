@@ -1,0 +1,51 @@
+Sub ReplaceValuesInActiveSheet()
+    Dim ws As Worksheet
+    Dim cell As Range
+    Dim originalValue As String
+    Dim newValue As String
+    
+    ' Sử dụng sheet hiện tại đang được mở
+    Set ws = ActiveSheet
+    
+    ' Loạt dòng cần thay đổi trong cột A
+    Set rng = ws.Range("A1:A" & ws.Cells(Rows.Count, "A").End(xlUp).Row)
+    
+    For Each cell In rng
+        originalValue = cell.Value
+        Select Case Left(originalValue, 4)
+            Case "016"
+                newValue = "03" & Mid(originalValue, 4)
+            Case "0120"
+                newValue = "070" & Mid(originalValue, 5)
+            Case "0121"
+                newValue = "079" & Mid(originalValue, 5)
+            Case "0122"
+                newValue = "077" & Mid(originalValue, 5)
+            Case "0126"
+                newValue = "076" & Mid(originalValue, 5)
+            Case "0128"
+                newValue = "078" & Mid(originalValue, 5)
+            Case "0123"
+                newValue = "083" & Mid(originalValue, 5)
+            Case "0124"
+                newValue = "084" & Mid(originalValue, 5)
+            Case "0125"
+                newValue = "085" & Mid(originalValue, 5)
+            Case "0127"
+                newValue = "081" & Mid(originalValue, 5)
+            Case "0129"
+                newValue = "082" & Mid(originalValue, 5)
+            Case "0199"
+                newValue = "059" & Mid(originalValue, 5)
+            Case "0186"
+                newValue = "056" & Mid(originalValue, 5)
+            Case "0188"
+                newValue = "058" & Mid(originalValue, 5)
+            Case Else
+                ' Nếu không thỏa mãn bất kỳ điều kiện nào, giữ nguyên giá trị ban đầu
+                newValue = originalValue
+        End Select
+        
+        cell.Value = newValue
+    Next cell
+End Sub
